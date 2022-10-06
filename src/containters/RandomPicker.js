@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import RandomPickerChoice from "../components/RandomPickerChoice";
 import RandomPickerControls from "../components/RandomPickerControls";
-import IntervalPicker from "../components/IntervalPicker";
 import MultiRangeSlider from "../components/MultiRangeSlider";
 
 let interval = null;
