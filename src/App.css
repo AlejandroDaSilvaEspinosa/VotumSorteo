@@ -185,7 +185,18 @@ input[type="number"] {
 .thumb--right {
   z-index: 4;
 }
-
+footer {
+  position: fixed;
+  bottom: 0;
+  text-align: center;
+  width: 100vw;
+  height: 3vh;
+  color: #fff;
+}
+a {
+  color: #fff;
+  text-decoration: underline;
+}
 /* For Chrome browsers */
 .thumb::-webkit-slider-thumb {
   background-color: #f1f5f7;
