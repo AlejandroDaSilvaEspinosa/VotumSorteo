@@ -1,38 +1,220 @@
-.App {
-  text-align: center;
+html {
+  --color-background: #222;
+  --color-text: #fff;
+  --color-text-light: #fff;
+  --color-button-start: #f9e226;
+  --color-button-stop: #f9e226;
+  --color-button-text: #000;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  background: var(--color-background);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.RandomPicker {
+  height: calc(70vh - 50px);
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: space-around;
+  padding: 16px;
+  font-family: "Helvetica", sans-serif;
+}
+
+svg {
+  height: 15vh;
+}
+.RandomPicker__choice {
+  display: flex;
+  align-content: center;
+  margin: 0;
+  color: var(--color-text);
+  font-size: 40vh;
+  font-weight: bold;
+  line-height: 1;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.RandomPicker__button {
+  display: block;
+  padding: 0.8em 1.6em;
+  min-width: 160px;
+  color: var(--color-button-text);
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  border: 0;
+  border-radius: 4em;
+  background-color: var(--color-button-start);
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  cursor: pointer;
+  transition: background-color 250ms ease-in-out, color 150ms ease-in-out;
+}
+.RandomPicker__button--stop {
+  background-color: var(--color-button-stop);
+}
+.RandomPicker__button--reset {
+  color: var(--color-text);
+  font-size: 14px;
+  text-transform: lowercase;
+  background-color: inherit;
+}
+.RandomPicker__button--reset[disabled] {
+  color: var(--color-text-light);
+  text-decoration: line-through;
+  cursor: not-allowed;
+}
+
+.RandomPicker__controls {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.RandomPicker__controls > *:not(:last-child) {
+  margin-bottom: 16px;
+}
+input[type="number"] {
+  display: block;
+  width: 50%;
+  padding: 0.8em 1.6em;
+  color: var(--color-text);
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+  border: 0;
+  border-radius: 4em;
+  background-color: var(--color-background);
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  cursor: pointer;
+  transition: background-color 250ms ease-in-out, color 150ms ease-in-out;
+}
+.container {
+  display: flex;
+  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  margin-top: 50px;
 }
 
-.App-link {
-  color: #61dafb;
+.slider {
+  position: relative;
+  width: 80vw;
+  max-width: 800px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
+.slider__track,
+.slider__range,
+.slider__left-value,
+.slider__right-value {
+  position: absolute;
+}
+
+.slider__track,
+.slider__range {
+  border-radius: 3px;
+  height: 5px;
+}
+
+.slider__track {
+  background-color: #ced4da;
+  width: 100%;
+  z-index: 1;
+}
+
+.slider__range {
+  background-color: var(--color-button-stop);
+  z-index: 2;
+}
+
+.slider__left-value,
+.slider__right-value {
+  color: #dee2e6;
+  font-size: 2em;
+  margin-top: 20px;
+}
+
+.slider__left-value {
+  left: 0px;
+}
+
+.slider__right-value {
+  right: 0px;
+}
+
+/* Removing the default appearance */
+.thumb,
+.thumb::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.thumb {
+  pointer-events: none;
+  position: absolute;
+  height: 0;
+  width: 80vw;
+  max-width: 800px;
+  outline: none;
+}
+
+.thumb--left {
+  z-index: 3;
+}
+
+.thumb--right {
+  z-index: 4;
+}
+
+/* For Chrome browsers */
+.thumb::-webkit-slider-thumb {
+  background-color: #f1f5f7;
+  border: none;
+  border-radius: 50%;
+  box-shadow: 0 0 1px 1px #ced4da;
+  cursor: pointer;
+  height: 18px;
+  width: 18px;
+  margin-top: 4px;
+  pointer-events: all;
+  position: relative;
+}
+
+/* For Firefox browsers */
+.thumb::-moz-range-thumb {
+  background-color: #f1f5f7;
+  border: none;
+  border-radius: 50%;
+  box-shadow: 0 0 1px 1px #ced4da;
+  cursor: pointer;
+  height: 18px;
+  width: 18px;
+  margin-top: 4px;
+  pointer-events: all;
+  position: relative;
+}
+@media screen and (max-width: 967px) {
+  .RandomPicker__choice {
+    font-size: 20vh;
   }
 }
